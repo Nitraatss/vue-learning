@@ -30,7 +30,7 @@ export default {
   },
   mounted() {
     axios
-      .get(`http://localhost:3000/users`)
+      .get(`http://localhost:3004/users`)
       .then(response => {
         this.usersArray = response.data
         // eslint-disable-next-line
