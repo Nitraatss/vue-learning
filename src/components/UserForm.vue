@@ -19,12 +19,6 @@
 export default {
   name: 'UserForm',
   props: {
-    users: {
-      type: Array,
-      required: true
-    }
-  },
-  props: {
     user: {
       type: Object,
       required: true

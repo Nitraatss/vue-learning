@@ -28,7 +28,7 @@ export default {
   },
   mounted() {
     axios
-      .get(`http://localhost:3004/users/${this.$route.params.id}`)
+      .get(`http://localhost:3000/users/${this.$route.params.id}`)
       .then(response => {
         this.singleUser = response.data
         // eslint-disable-next-line
