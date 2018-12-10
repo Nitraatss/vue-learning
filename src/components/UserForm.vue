@@ -1,14 +1,41 @@
 <template>
   <section>
     <p>{{ userData.name }}</p>
-    <input v-model="userData.name" type="text" />
+    <input
+      v-model="userData.name"
+      type="text"
+    >
     <p>{{ userData.username }}</p>
-    <input v-model="userData.username" type="text" />
+    <input
+      v-model="userData.username"
+      type="text"
+    >
     <p>{{ userData.email }}</p>
-    <input v-model="userData.email" type="email" /> <br />
-    <button class="btn-success" type="button" v-on:click="submitUpdate">Submit</button>
-    <button class="btn-warning" type="button" v-on:click="resetUserData">Reset</button>
-    <button class="btn-danger" type="button" v-on:click="canselUpdate">Cansel</button>
+    <input
+      v-model="userData.email"
+      type="email"
+    > <br>
+    <button
+      class="btn-success"
+      type="button"
+      @click="submitUpdate"
+    >
+      Submit
+    </button>
+    <button
+      class="btn-warning"
+      type="button"
+      @click="resetUserData"
+    >
+      Reset
+    </button>
+    <button
+      class="btn-danger"
+      type="button"
+      @click="canselUpdate"
+    >
+      Cansel
+    </button>
   </section>
 </template>
 
@@ -33,12 +60,12 @@ export default {
   watch: {
     userData: {
       deep: true,
-      handler() {
+      handler () {
         this.$emit('input', this.userData)
       }
     }
   },
-  mounted() {
+  mounted () {
     console.log(this.singleUser)
     this.userData = Object.assign({}, this.singleUser)
     this.defaultData = Object.assign({}, this.singleUser)
@@ -46,13 +73,13 @@ export default {
     console.log('Component UserForm has been mounted')
   },
   methods: {
-    submitUpdate() {
+    submitUpdate () {
       this.$emit('update-user', Object.assign({}, this.userData))
     },
-    resetUserData() {
+    resetUserData () {
       this.userData = Object.assign({}, this.defaultData)
     },
-    canselUpdate() {
+    canselUpdate () {
       this.$router.push('/users')
     }
   }

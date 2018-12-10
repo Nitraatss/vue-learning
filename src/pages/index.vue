@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2 class="alert alert-secondary">Home Page</h2>
+    <h2 class="alert alert-secondary">
+      Home Page
+    </h2>
   </div>
 </template>
 

@@ -1,8 +1,16 @@
 <template>
   <section>
-    <div v-show="errored"><p class="alert alert-danger">I don't feel so good</p></div>
-    <div v-show="added"><p class="alert alert-success">You git gud</p></div>
-    <user-add-form v-on:add-user="addUser"></user-add-form>
+    <div v-show="errored">
+      <p class="alert alert-danger">
+        I don't feel so good
+      </p>
+    </div>
+    <div v-show="added">
+      <p class="alert alert-success">
+        You git gud
+      </p>
+    </div>
+    <UserAddForm @add-user="addUser" />
   </section>
 </template>
 
@@ -13,7 +21,7 @@ import UserAddForm from '@/components/UserAddForm.vue'
 export default {
   name: 'UserAddPage',
   components: {
-    'user-add-form': UserAddForm
+    UserAddForm
   },
   data: () => {
     return {

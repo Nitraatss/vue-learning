@@ -1,18 +1,47 @@
 <template>
   <section>
-    <p v-bind:class="{ alert: errorName, 'alert-danger': errorName }">Name: {{ userData.name }}</p>
-    <input v-model="userData.name" type="text" />
-    <p v-bind:class="{ alert: errorUsername, 'alert-danger': errorUsername }">
+    <p :class="{ alert: errorName, 'alert-danger': errorName }">
+      Name: {{ userData.name }}
+    </p>
+    <input
+      v-model="userData.name"
+      type="text"
+    >
+    <p :class="{ alert: errorUsername, 'alert-danger': errorUsername }">
       Username: {{ userData.username }}
     </p>
-    <input v-model="userData.username" type="text" />
-    <p v-bind:class="{ alert: errorEmail, 'alert-danger': errorEmail }">
+    <input
+      v-model="userData.username"
+      type="text"
+    >
+    <p :class="{ alert: errorEmail, 'alert-danger': errorEmail }">
       Email: {{ userData.email }}
     </p>
-    <input v-model="userData.email" type="email" /> <br />
-    <button class="btn-success" type="button" v-on:click="submitAdding">Submit</button>
-    <button class="btn-warning" type="button" v-on:click="resetFields">Reset</button>
-    <button class="btn-danger" type="button" v-on:click="canselAdding">Cansel</button>
+    <input
+      v-model="userData.email"
+      type="email"
+    > <br>
+    <button
+      class="btn-success"
+      type="button"
+      @click="submitAdding"
+    >
+      Submit
+    </button>
+    <button
+      class="btn-warning"
+      type="button"
+      @click="resetFields"
+    >
+      Reset
+    </button>
+    <button
+      class="btn-danger"
+      type="button"
+      @click="canselAdding"
+    >
+      Cansel
+    </button>
   </section>
 </template>
 

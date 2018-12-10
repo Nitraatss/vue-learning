@@ -1,11 +1,28 @@
 <template>
   <section>
-    <label for="usersPerPage">Choose number of users per page</label>
-    <select id="usersPerPage" ref="selectUsers" v-on:change="changeUsersPerPage">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3" selected>3</option>
-      <option value="4">4</option>
+    <label for="usersPerPage">
+      Choose number of users per page
+    </label>
+    <select
+      id="usersPerPage"
+      ref="selectUsers"
+      @change="changeUsersPerPage"
+    >
+      <option value="1">
+        1
+      </option>
+      <option value="2">
+        2
+      </option>
+      <option
+        value="3"
+        selected
+      >
+        3
+      </option>
+      <option value="4">
+        4
+      </option>
     </select>
   </section>
 </template>
@@ -25,18 +42,18 @@ export default {
   watch: {
     usersPerPage: {
       deep: true,
-      handler() {
+      handler () {
         this.$emit('input', this.usersPerPage)
         this.$emit('change-users-per-page-number', this.usersPerPage)
       }
     }
   },
-  mounted() {
+  mounted () {
     // eslint-disable-next-line
     console.log('Component UsersPagination  has been mounted')
   },
   methods: {
-    changeUsersPerPage() {
+    changeUsersPerPage () {
       this.usersPerPage = this.$refs.selectUsers.value
     }
   }

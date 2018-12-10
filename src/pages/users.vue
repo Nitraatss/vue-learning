@@ -1,24 +1,33 @@
 <template>
   <section>
-    <div v-show="errored"><p class="alert alert-danger">I don't feel so good</p></div>
-    <span v-if="loading" class="badge secondary"> Loading </span>
-    <users-per-select
+    <div v-show="errored">
+      <p class="alert alert-danger">
+        I don't feel so good
+      </p>
+    </div>
+    <span
+      v-if="loading"
+      class="badge secondary"
+    >
+      Loading
+    </span>
+    <UsersNumberPerPage
       v-model="usersPerPage"
-      v-on:change-users-per-page-number="changeUsersPerPageNumber"
-    ></users-per-select>
-    <users-tabel
+      @change-users-per-page-number="changeUsersPerPageNumber"
+    />
+    <UsersTabel
       v-if="!loading"
       v-model="users"
-      v-bind:usersPage="usersPage"
-      v-on:delete-user="deleteUser"
-      v-on:refresh-list="refreshList"
-    ></users-tabel>
-    <users-pagination
+      :users-page="usersPage"
+      @delete-user="deleteUser"
+      @refresh-list="refreshList"
+    />
+    <UsersPagination
       v-if="!loading"
       v-model="usersPage"
-      v-bind:pagesNumber="totalPages"
-      v-on:swap-page="swapPage"
-    ></users-pagination>
+      :pages-number="totalPages"
+      @swap-page="swapPage"
+    />
   </section>
 </template>
 
@@ -31,9 +40,9 @@ import UsersNumberPerPage from '@/components/UsersNumberPerPage.vue'
 export default {
   name: 'UsersPage',
   components: {
-    'users-tabel': UsersTabel,
-    'users-pagination': UsersPagination,
-    'users-per-select': UsersNumberPerPage
+    UsersTabel,
+    UsersPagination,
+    UsersNumberPerPage
   },
   data: () => {
     return {
@@ -47,10 +56,8 @@ export default {
       totalPages: 0
     }
   },
-  computed: {
-    totalPages() {
-      return Math.floor(this.users.length / this.usersPerPage)
-    }
+  watch: {
+    usersPage: 'loadUsers'
   },
   mounted() {
     this.loadUsers()
@@ -115,9 +122,6 @@ export default {
     changeUsersPerPageNumber() {
       this.loadUsers()
     }
-  },
-  watch: {
-    usersPage: 'loadUsers'
   }
 }
 </script>

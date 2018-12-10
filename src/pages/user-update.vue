@@ -1,10 +1,27 @@
 <template>
   <section>
-    <div v-show="errored"><p class="alert alert-danger">I don't feel so good</p></div>
-    <div v-show="updated"><p class="alert alert-success">You git gud</p></div>
-    <span v-if="loading" class="badge secondary"> Loading </span>
+    <div v-show="errored">
+      <p class="alert alert-danger">
+        I don't feel so good
+      </p>
+    </div>
+    <div v-show="updated">
+      <p class="alert alert-success">
+        You git gud
+      </p>
+    </div>
+    <span
+      v-if="loading"
+      class="badge secondary"
+    >
+      Loading
+    </span>
     <pre>{{ singleUser }}</pre>
-    <user-form v-if="!loading" v-model="singleUser" v-on:update-user="updateUser"></user-form>
+    <UserForm
+      v-if="!loading"
+      v-model="singleUser"
+      @update-user="updateUser"
+    />
   </section>
 </template>
 
@@ -15,7 +32,7 @@ import UserForm from '@/components/UserForm.vue'
 export default {
   name: 'UserUpdatePage',
   components: {
-    'user-form': UserForm
+    UserForm
   },
   data: () => {
     return {

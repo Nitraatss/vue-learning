@@ -1,7 +1,17 @@
 <template>
   <section>
-    <div v-for="page in pagesNumber" :key="page" class="pagination">
-      <button class="active" type="button" v-on:click="changePage(page)">{{ page }}</button>
+    <div
+      v-for="page in pagesNumber"
+      :key="page"
+      class="pagination"
+    >
+      <button
+        class="active"
+        type="button"
+        @click="changePage(page)"
+      >
+        {{ page }}
+      </button>
     </div>
   </section>
 </template>
@@ -22,26 +32,26 @@ export default {
       required: true
     }
   },
-  watch: {
-    usersPage: {
-      deep: true,
-      handler() {
-        this.$emit('input', this.usersPage)
-        this.$emit('swap-page', this.usersPage)
-      }
-    }
-  },
   data: () => {
     return {
       currentPage: 1
     }
   },
-  mounted() {
+  watch: {
+    usersPage: {
+      deep: true,
+      handler () {
+        this.$emit('input', this.usersPage)
+        this.$emit('swap-page', this.usersPage)
+      }
+    }
+  },
+  mounted () {
     // eslint-disable-next-line
     console.log('Component UsersPagination  has been mounted')
   },
   methods: {
-    changePage(pageNumber) {
+    changePage (pageNumber) {
       this.usersPage = pageNumber
     }
   }
