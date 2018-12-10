@@ -64,7 +64,7 @@
       "@vue/prettier"
     ],
     "rules": {
-      "vue/attributes-order": "off"
+      "vue/attributes-order": "true"
     },
     "parserOptions": {
       "parser": "babel-eslint"

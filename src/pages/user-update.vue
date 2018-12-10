@@ -1,12 +1,10 @@
 <template>
   <section>
-    <div v-show="errored">
-      <p class="alert alert-danger">I don't feel so good</p>
-    </div>
-    <span v-if="loading" class="badge secondary">
-      Loading
-    </span>
-    <user-form v-if="!loading" v-bind:user="singleUser"></user-form>
+    <div v-show="errored"><p class="alert alert-danger">I don't feel so good</p></div>
+    <div v-show="updated"><p class="alert alert-success">You git gud</p></div>
+    <span v-if="loading" class="badge secondary"> Loading </span>
+    <pre>{{ singleUser }}</pre>
+    <user-form v-if="!loading" v-model="singleUser" v-on:update-user="updateUser"></user-form>
   </section>
 </template>
 
@@ -19,10 +17,11 @@ export default {
   components: {
     'user-form': UserForm
   },
-  data() {
+  data: () => {
     return {
       loading: true,
       errored: false,
+      updated: false,
       singleUser: []
     }
   },
@@ -42,6 +41,22 @@ export default {
       .finally(() => {
         this.loading = false
       })
+  },
+  methods: {
+    updateUser(updatedUser) {
+      axios
+        .patch(`http://localhost:3004/users/${this.$route.params.id}`, updatedUser)
+        .then(response => {
+          this.updated = true
+          // eslint-disable-next-line
+          console.log(response)
+        })
+        .catch(error => {
+          this.errored = true
+          // eslint-disable-next-line
+          console.log(error)
+        })
+    }
   }
 }
 </script>

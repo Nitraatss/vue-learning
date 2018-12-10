@@ -8,13 +8,13 @@
         <router-link tag="li" to="/users" exact active-class="active">
           <a class="nav-link" href="#">Users Tabel</a>
         </router-link>
+        <router-link tag="li" to="/add" exact active-class="active">
+          <a class="nav-link" href="#">Add User</a>
+        </router-link>
       </ul>
     </nav>
-    <main id="app" role="main">
-      <router-view/>
-    </main>
+    <main id="app" role="main"><router-view /></main>
   </div>
-
 </template>
 
 <script>
